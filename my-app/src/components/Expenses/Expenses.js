@@ -1,7 +1,8 @@
 import ExpenseItem from "./ExpenseItem";
 import './Expenses.css';
-import Card from './Card';
+import Card from '../UI/Card';
 //use props and renders expenseItems to make APP.JS file smaller
+// const Expenses = () => {...}
 function Expenses(props){
 return(
     <Card className="expenses">
