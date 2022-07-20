@@ -4,9 +4,9 @@ import './ExpenseForm.css';
 
 const ExpenseForm = () => {
     
-//   const [enteredTitle, setEnteredTitle] = useState('');
-//   const [enteredAmount, setEnteredAmount] = useState('');
-//   const [enteredDate, setEnteredDate] = useState('');
+  const [enteredTitle, setEnteredTitle] = useState('');
+  const [enteredAmount, setEnteredAmount] = useState('');
+  const [enteredDate, setEnteredDate] = useState('');
 
 //using one states and storing-in/passing an object
     const [userInput, setUserInput] = useState({
@@ -15,7 +15,7 @@ const ExpenseForm = () => {
         enteredDate:''
     }); 
   const titleChangeHandler = (event) => {
-   // setEnteredTitle(event.target.value);
+   setEnteredTitle(event.target.value);
    // to have only the title changed and not have the other data lost we use the "spread operator"
    // here, we overwrite the enteredTitle
 //    setUserInput({
@@ -27,31 +27,41 @@ const ExpenseForm = () => {
 *  updated value given that React will schedule state updates and the 
 *  previous method cannot garauntee the lastest value if there are many updates scheduled!
 */ 
-        setUserInput((prevState) => {
-            return { ...prevState, enteredTitle: event.target.value }
-        });
+        // setUserInput((prevState) => {
+        //     return { ...prevState, enteredTitle: event.target.value }
+        // });
 
   };
 
   const amountChangeHandler = (event) => {
-   // setEnteredAmount(event.target.value);
-   setUserInput({
-    ...userInput,
-        enteredAmount:event.target.value,
-
-    });
+   setEnteredAmount(event.target.value);
+//    setUserInput({
+//     ...userInput,
+//         enteredAmount:event.target.value,
+//     });
   };
 
   const dateChangeHandler = (event) => {
-   // setEnteredDate(event.target.value);
-   setUserInput({
-    ...userInput,
-        enteredDate:event.target.value,
-    });
+   setEnteredDate(event.target.value);
+//    setUserInput({
+//     ...userInput,
+//         enteredDate:event.target.value,
+//     });
+  };
+
+  const submitHandler = (event) => {
+    //this is default js function
+    event.preventDefault();
+    const expenseData = {
+        title: enteredTitle,
+        amount: enteredAmount,
+        date: new Date(enteredDate)
+    };
+    console.log(expenseData);
   };
 
   return (
-    <form>
+    <form onSubmit = {submitHandler}>
       <div className='new-expense__controls'>
         <div className='new-expense__control'>
           <label>Title</label>
