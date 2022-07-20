@@ -17,10 +17,20 @@ const ExpenseForm = () => {
   const titleChangeHandler = (event) => {
    // setEnteredTitle(event.target.value);
    // to have only the title changed and not have the other data lost we use the "spread operator"
-   setUserInput({
-    ...userInput,
-        enteredTitle:event.target.value,
-   });
+   // here, we overwrite the enteredTitle
+//    setUserInput({
+//     ...userInput,
+//         enteredTitle:event.target.value,
+//    });
+
+/* this is the alternative; more efficient way to ensure we're getting the most
+*  updated value given that React will schedule state updates and the 
+*  previous method cannot garauntee the lastest value if there are many updates scheduled!
+*/ 
+        setUserInput((prevState) => {
+            return { ...prevState, enteredTitle: event.target.value }
+        });
+
   };
 
   const amountChangeHandler = (event) => {
