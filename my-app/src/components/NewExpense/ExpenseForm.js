@@ -3,20 +3,41 @@ import React, { useState } from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm = () => {
-  const [enteredTitle, setEnteredTitle] = useState('');
-  const [enteredAmount, setEnteredAmount] = useState('');
-  const [enteredDate, setEnteredDate] = useState('');
+    
+//   const [enteredTitle, setEnteredTitle] = useState('');
+//   const [enteredAmount, setEnteredAmount] = useState('');
+//   const [enteredDate, setEnteredDate] = useState('');
 
+//using one states and storing-in/passing an object
+    const [userInput, setUserInput] = useState({
+        enteredTitle:'',
+        enteredAmount:'',
+        enteredDate:''
+    }); 
   const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
+   // setEnteredTitle(event.target.value);
+   // to have only the title changed and not have the other data lost we use the "spread operator"
+   setUserInput({
+    ...userInput,
+        enteredTitle:event.target.value,
+   });
   };
 
   const amountChangeHandler = (event) => {
-    setEnteredAmount(event.target.value);
+   // setEnteredAmount(event.target.value);
+   setUserInput({
+    ...userInput,
+        enteredAmount:event.target.value,
+
+    });
   };
 
   const dateChangeHandler = (event) => {
-    setEnteredDate(event.target.value);
+   // setEnteredDate(event.target.value);
+   setUserInput({
+    ...userInput,
+        enteredDate:event.target.value,
+    });
   };
 
   return (
