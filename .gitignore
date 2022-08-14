@@ -37426,3 +37426,4 @@ course-goal-app/node_modules/yocto-queue/license
 course-goal-app/node_modules/yocto-queue/package.json
 course-goal-app/node_modules/yocto-queue/readme.md
 course-goal-app/package-lock.json
+*.json
