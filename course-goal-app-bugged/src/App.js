@@ -14,7 +14,8 @@ const App = () => {
     setCourseGoals(prevGoals => {
       const updatedGoals = [...prevGoals];
       //having the same id caused the error, and used browser's console log and break points to find the error
-      updatedGoals.unshift({ text: enteredText, id: 'goal1' });
+      //updatedGoals.unshift({ text: enteredText, id: 'goal1' });
+      updatedGoals.unshift({ text: enteredText, id: Math.random().toString() });
       return updatedGoals;
     });
   };
