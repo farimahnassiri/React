@@ -36,7 +36,7 @@ const NewUserForm = (props) =>{
             <label>Username</label>
             <input
               type='text'
-              value={enteredTitle}
+              value={enteredName}
               onChange={nameChangeHandler}
             />
           </div>
@@ -46,7 +46,7 @@ const NewUserForm = (props) =>{
               type='number'
               min='1'
               step='1'
-              value={enteredAmount}
+              value={enteredAge}
               onChange={ageChangeHandler}
             />
           </div>
