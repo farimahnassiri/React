@@ -20,3 +20,7 @@
     width: 20rem;
     max-width: 100%;
   }
+
+  .new-user_actions {
+    text-align: right;
+  }

@@ -32,27 +32,29 @@ const NewUserForm = (props) =>{
     return(
         <form onSubmit={submitHandler}>
         <div className='new-user__controls'>
+            <div className='new-user__control'>
+              <label>Username</label>
+              <input
+                type='text'
+                value={enteredName}
+                onChange={nameChangeHandler}
+              />
+            </div>
+            
+          
           <div className='new-user__control'>
-            <label>Username</label>
-            <input
-              type='text'
-              value={enteredName}
-              onChange={nameChangeHandler}
-            />
+              <label>Age (Years)</label>
+              <input
+                type='number'
+                min='1'
+                step='1'
+                value={enteredAge}
+                onChange={ageChangeHandler}
+              />
+            </div>
+          <div className='new-user__actions'>
+            <button type='submit'>Add User</button>
           </div>
-          <div className='new-user__control'>
-            <label>Age (Years)</label>
-            <input
-              type='number'
-              min='1'
-              step='1'
-              value={enteredAge}
-              onChange={ageChangeHandler}
-            />
-          </div>
-        </div>
-        <div className='new-user__actions'>
-          <button type='submit'>Add User</button>
         </div>
       </form>
     );
