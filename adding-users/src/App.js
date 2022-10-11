@@ -1,11 +1,11 @@
-import React , { useState } from 'react';
+import React from 'react';
 
-import NewUserForm from "./components/NewUser/NewUserForm";
+import AddUser from "./components/Users/AddUser";
 
 function App() {
   return (
     <div>
-    <NewUserForm/>
+    <AddUser/>
     </div>
   );
 }
