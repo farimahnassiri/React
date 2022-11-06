@@ -14,8 +14,8 @@ function App() {
 
   return (
     <Fragment>
-    <AddUser onAddUser = {addUserHandler}/>
-    <UsersList users={usersList} />
+      <AddUser onAddUser = {addUserHandler}/>
+      <UsersList users={usersList} />
     </Fragment>
   );
 }
