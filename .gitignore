@@ -1,2 +1,4 @@
 node_modules
 .DS_Store
+authentication-screen/.eslintcache
+authentication-screen/package-lock.json
