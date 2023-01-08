@@ -1,18 +1,18 @@
 .button {
   font: inherit;
-  background-image: linear-gradient(to right, #280048 0%, #66bd67  51%, #280048  100%);
-  padding: 10px 35px;
-  text-align: center;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;           
+  border: 1px solid #4f005f;
+  background: #4f005f;
+  color: white;
+  padding: 0.75rem 3.5rem;
+  cursor: pointer;
+  font-size: 1.15rem;
   border-radius: 30px;
 }
 
 .button:hover,
 .button:active {
-  background-position: right center; /* change the direction of the change here */
-  color: #fff;
+  background: #741188;
+  border-color: #741188;
 }
 
 .button:focus {
@@ -28,4 +28,3 @@ button:active:disabled {
   color: #666666;
   cursor: not-allowed;
 }
-
