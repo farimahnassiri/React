@@ -19,21 +19,21 @@ const Login = (props) => {
     }
   },[]);
 
-  useEffect(()=>{
+  // useEffect(()=>{
     
-    const identifier = setTimeout(() => {
-      console.log('Cheking for validity!');
-      setFormIsValid(
-        enteredEmail.includes('@') && enteredPassword.trim().length > 6
-      );
-    }, 500);
+  //   const identifier = setTimeout(() => {
+  //     console.log('Cheking for validity!');
+  //     setFormIsValid(
+  //       enteredEmail.includes('@') && enteredPassword.trim().length > 6
+  //     );
+  //   }, 500);
   
-    return () => {
-      console.log('CLEANUP!');
-      //this function is built in by the browser
-     clearTimeout(identifier);
-    };
-  },[enteredEmail, enteredPassword]);
+  //   return () => {
+  //     console.log('CLEANUP!');
+  //     //this function is built in by the browser
+  //    clearTimeout(identifier);
+  //   };
+  // },[enteredEmail, enteredPassword]);
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
@@ -46,6 +46,9 @@ const Login = (props) => {
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
 
+    //because of how react schedules state changes and updates, it is possible that
+    //we run into a problem having these two depended on one another and this is
+    // a good example of where we'd use reducer
     setFormIsValid(
       event.target.value.trim().length > 6 && enteredEmail.includes('@')
     );
