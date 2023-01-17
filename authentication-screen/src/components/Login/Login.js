@@ -10,8 +10,8 @@ const emailReducer = (state, action) => {
   if (action.type === 'USER_INPUT'){
     return { value: action.val, isValid: action.val.includes('@') };
   }
-  if (action.type === 'USER_BLUR'){
-    return { value: state.value, isValid: state.val.includes('@') };
+  if (action.type === 'INPUT_BLUR'){
+    return { value: state.value, isValid: state.value.includes('@') };
   }
 return { value:'', isValid: false };
 };
@@ -23,7 +23,7 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
-  const [emailState, dispatchEmail] = useReducer(emailReducer, { value:'', isValid: null}); 
+  const [emailState, dispatchEmail] = useReducer(emailReducer, { value:'' , isValid: null }); 
 
 
   useEffect(()=>{
@@ -52,6 +52,7 @@ const Login = (props) => {
 
   const emailChangeHandler = (event) => {
     dispatchEmail({type: 'USER_INPUT', val: event.target.value});
+
     setFormIsValid(
       event.target.value.includes('@') && enteredPassword.trim().length > 6
     );
