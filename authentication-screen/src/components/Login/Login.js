@@ -4,8 +4,6 @@ import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 
-// function can be created outside the scope of component because its independent
-// and does not need interact with anything inside the component function
 const emailReducer = (state, action) => {
   if (action.type === 'USER_INPUT'){
     return { value: action.val, isValid: action.val.includes('@') };
@@ -28,14 +26,15 @@ const passwordReducer = (state, action) => {
 
 const Login = (props) => {
   // const [enteredEmail, setEnteredEmail] = useState('');
-  // const [emailIsValid, setEmailIsValid] = useState();
-  //const [enteredPassword, setEnteredPassword] = useState('');
-  //const [passwordIsValid, setPasswordIsValid] = useState();
-  const [formIsValid, setFormIsValid] = useState(false);
 
+  const [formIsValid, setFormIsValid] = useState(false);
   const [emailState, dispatchEmail] = useReducer(emailReducer, { value:'' , isValid: null }); 
   const [passwordState, dispatchPassword] = useReducer(passwordReducer, {value:'', isValid: null});
 
+// OBJECT DESTRUCTURING - similar to array destructing
+// with the :XX we are not assigning the value (only an alias assignment), XX is just a constant & synatx for destructuring
+const { isValid: emailIsValid } = emailState;
+const { isValid: passwordIsValid } = passwordState;
 
   useEffect(()=>{
     console.log('EFFECT RUNNING');
@@ -46,46 +45,28 @@ const Login = (props) => {
   },[]);
 
 
-  //problem here is that this effect will run too often!
   useEffect(() => {
     
     const identifier = setTimeout(() => {
       console.log('Cheking for validity!');
-      setFormIsValid(
-        emailState.isValid && passwordState.isValid
-      );
+      setFormIsValid(emailIsValid && passwordIsValid);
     }, 500);
   
     return () => {
       console.log('CLEANUP!');
-      //this function is built in by the browser
      clearTimeout(identifier);
     };
-  },[emailState, passwordState]);
+  },[emailIsValid, passwordIsValid]);
 
   const emailChangeHandler = (event) => {
     dispatchEmail({type: 'USER_INPUT', val: event.target.value});
-
-    // setFormIsValid(
-    //   event.target.value.includes('@') && passwordState.isValid
-    // );
   };
 
   const passwordChangeHandler = (event) => {
     dispatchPassword({type: 'USER_PASS', val: event.target.value});
-
-    //because of how react schedules state changes and updates, it is possible that
-    //we run into a problem having these two depended on one another and this is
-    // a good example of where we'd use reducer
-    // setFormIsValid(
-    //   // emailState.value.includes('@') && event.target.value.trim().length > 6 OR...
-    //   emailState.isValid && event.target.value.trim().length > 6
-    
-    // );
   };
 
   const validateEmailHandler = () => {
-  //  setEmailIsValid(emailState.isValid);
     dispatchEmail({type: 'INPUT_BLUR'});
   };
 
