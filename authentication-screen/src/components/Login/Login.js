@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useReducer, useContext } from 'react';
 
 import Card from '../UI/Card/Card';
-import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
-import AuthContext from '../../store/auth-context';
 import Input from '../UI/Input/Input';
+import classes from './Login.module.css';
+
+
+import AuthContext from '../../store/auth-context';
+
 
 const emailReducer = (state, action) => {
   if (action.type === 'USER_INPUT'){
@@ -79,7 +82,13 @@ const { isValid: passwordIsValid } = passwordState;
 
   const submitHandler = (event) => {
     event.preventDefault();
-    authCtx.onLogin(emailState.value, passwordState.value);
+    if (formIsValid){
+      authCtx.onLogin(emailState.value, passwordState.value);
+    }
+    else{
+
+    }
+    
   };
 
   return (
@@ -104,7 +113,7 @@ const { isValid: passwordIsValid } = passwordState;
           onBlur ={validatePasswordHandler}
         />
         <div className={classes.actions}>
-          <Button type="submit" className={classes.btn} disabled={!formIsValid}>
+          <Button type="submit" className={classes.btn}>
             Login
           </Button>
         </div>
