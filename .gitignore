@@ -3,3 +3,4 @@ node_modules
 authentication-screen/.eslintcache
 authentication-screen/package-lock.json
 .DS_Store
+project-food-order-app/package-lock.json
