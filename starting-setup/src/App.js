@@ -6,6 +6,7 @@ import Button from './components/UI/Button/Button';
 function App() {
   const [showParagraph, setShowParagraph] = useState(false);
 
+  console.log('APP RUNNING');
   const toggleParagraphHandler = () => {
     setShowParagraph((previousShowParagraph) => !previousShowParagraph);
   };
