@@ -8,4 +8,4 @@ const DemoOutput = (props) => {
     );
 };
 
-export default DemoOutput;
+export default React.memo(DemoOutput);
