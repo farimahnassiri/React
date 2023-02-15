@@ -13,13 +13,18 @@ class UserFinder extends Component{
   constructor(){
     super();
     this.state = {
-      filteredUsers: DUMMY_USERS,
-      searchTerm:''
+      filteredUsers: [],
+      searchTerm:'',
     };
   }
 
+  componentDidMount(){
+    //Send http request...
+    this.setState({ filteredUsers: DUMMY_USERS });
+  }
+
   componentDidUpdate(prevPorps, prevState){
-    if(prevPorps.searchTerm !== this.state.searchTerm){
+    if(prevState.searchTerm !== this.state.searchTerm){
       this.setState({
         filteredUsers: DUMMY_USERS.filter((user) =>
         user.name.includes(this.state.searchTerm)
