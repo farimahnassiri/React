@@ -1,24 +1,25 @@
-import { useState, Component } from 'react';
-import User from './User';
+import { Component } from 'react';
 
+import User from './User';
 import classes from './Users.module.css';
 
 class Users extends Component{
   constructor(){
     super();
     this.state = {
-      showUsers: true
+      showUsers: true,
+      more:'Test'
     };
   }
 
   toggleUsersHandler(){
-    // this.state.showUsers = false; //NOTTTT
-    this.setState((curState) => {
-      return { showUsers: !curState.showUsers};
-  });
+      // this.state.showUsers = false; //NOTTTT
+      this.setState((curState) => {
+        return { showUsers: !curState.showUsers };
+    });
   }
 
-  render(){
+  render() {
     const usersList = (
       <ul>
         {this.props.users.map((user) => (
@@ -26,6 +27,7 @@ class Users extends Component{
         ))}
       </ul>
     );
+    
     return (
       <div className={classes.users}>
         <button onClick={this.toggleUsersHandler.bind(this)}>
