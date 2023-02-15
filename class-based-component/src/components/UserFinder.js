@@ -15,6 +15,7 @@ const UserFinder = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
+    // The filter is case sensetive!
     setFilteredUsers(
       DUMMY_USERS.filter((user) => user.name.includes(searchTerm))
     );
