@@ -37,8 +37,6 @@ class Users extends Component{
   }
 }
 
-//functional component
-
 // const Users = () => {
 //   const [showUsers, setShowUsers] = useState(true);
 
