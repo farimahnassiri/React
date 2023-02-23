@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 const useHttp = (requestConfig, applyData) => {
-
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -29,13 +28,11 @@ const useHttp = (requestConfig, applyData) => {
         setIsLoading(false);
       };
       //shortcut instead of "isLoading: isLoading,"
-      return{
+    return{
         isLoading,
         error,
         sendRequest
-      };
-    
-    
+    };
 };
 
 export default useHttp;
