@@ -8,6 +8,8 @@ const NewTask = (props) => {
 const createTask = (taskData, taskText) => {
   const generatedId = taskData.name; // firebase-specific => "name" contains generated id
   const createdTask = { id: generatedId, text: taskText };
+
+  props.onAddTask(createdTask);
 };
 
   const enterTaskHandler = async (taskText) => {
@@ -15,10 +17,11 @@ const createTask = (taskData, taskText) => {
       url:'https://react-http-15f97-default-rtdb.firebaseio.com/tasks.json',
       method: 'POST',
       headers:{
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: { text: taskText }
-    }, createTask.bind(null, taskText));
+      body: { text: taskText },
+    }, createTask.bind(null, taskText)
+    );
   };
 
   return (
