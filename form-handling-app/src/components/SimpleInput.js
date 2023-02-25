@@ -1,9 +1,16 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const SimpleInput = (props) => {
   const nameInputRef = useRef();
   const [enteredName, setEnteredName] = useState('');
+  //this can be problematic in case of using useEffect
   const [enteredNameIsValid, setEnteredNameIsValid] = useState(true);
+
+  useEffect(()=>{
+    if(enteredNameIsValid){
+      console.log('Name Input is valid!');
+    }
+  },[enteredNameIsValid]);
 
   const nameInputChangeHandler = (event) => {
     setEnteredName(event.target.value);
