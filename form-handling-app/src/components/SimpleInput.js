@@ -14,6 +14,11 @@ const SimpleInput = (props) => {
 
   const nameInputChangeHandler = (event) => {
     setEnteredName(event.target.value);
+    // because state updating functions are scheduled by React,
+    // we need to access the value like so to get the correct value 
+    if(event.target.value.trim() !== ''){
+      setEnteredNameIsValid(true);
+    }
   };
 
   const nameInputBlurHandler = (event) => {
