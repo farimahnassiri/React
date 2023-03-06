@@ -1,2 +1,6 @@
 node_modules
 .DS_Store
+counters/package-lock.json
+custom-hooks/package-lock.json
+form-handling-app/package-lock.json
+movie-list-app/package-lock.json
