@@ -13,8 +13,7 @@ const [httpError, setHttpError] = useState();
   useEffect(() => {
     const fetchMeals = async() => {
       setIsLoading(true);
-      // when we removed the .json to create the error
-      const response = await fetch('https://react-http-15f97-default-rtdb.firebaseio.com/meals');
+      const response = await fetch('https://react-http-15f97-default-rtdb.firebaseio.com/meals.json');
 
       if(!response.ok){
         throw new Error('Something went wrong!');
@@ -35,15 +34,6 @@ const [httpError, setHttpError] = useState();
       setIsLoading(false);
     };
 
-//inside an async function that returns a promise <--> error not caught!
-    // try{
-    //   fetchMeals();
-    // } catch (error){
-    //   setIsLoading(false);
-    //   setHttpError(error.message);
-    // }
-
-//alternative approach
     fetchMeals().catch((error) => {
       setIsLoading(false);
       setHttpError(error.message);
