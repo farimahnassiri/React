@@ -1,6 +1,8 @@
 import ProductItem from './ProductItem';
 import classes from './Products.module.css';
 
+const DUMMY_PRODUCTS = [];
+
 const Products = (props) => {
   return (
     <section className={classes.products}>
