@@ -7,6 +7,8 @@ import Products from './components/Shop/Products';
 import { uiActions } from './store/ui-slice';
 import Notification from './components/UI/Notification';
 
+let isInitial = true;
+
 function App() {
   const dispatch = useDispatch();
   const showCart = useSelector((state) => state.ui.cartIsVisible);
@@ -70,15 +72,23 @@ function App() {
         throw new Error('Sending cart data failed.');
       }
 
-      dispatch(uiActions.showNotification({
+      dispatch(
+        uiActions.showNotification({
           status: 'success',
           title: 'Success!',
           message: 'Sent cart data Successfully!'
         })
       );
-    };  
+    };
+
+    if (isInitial){
+      isInitial = false;
+      return;
+    }
+
     sendCartData().catch((error) => {
-      dispatch(uiActions.showNotification({
+      dispatch(
+        uiActions.showNotification({
           status: 'error',
           title: 'Error!',
           message: 'Sending cart data failed!'
