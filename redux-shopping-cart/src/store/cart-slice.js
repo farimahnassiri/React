@@ -48,6 +48,7 @@ export const sendCartData = (cart) => {
       uiActions.showNotification({
         status: 'pending',
         title: 'Sending...',
+        message: 'Sending cart data!'
       })
     );
 
