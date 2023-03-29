@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { sendCartData } from './store/cart-slice';
+import { sendCartData } from './cart-actions';
 
 const cartSlice = createSlice({
   name: 'cart',
