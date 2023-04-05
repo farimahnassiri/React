@@ -15,3 +15,4 @@ mpa-with-router/package-lock.json
 mpa-with-router-app/frontend/package-lock.json
 mpa-with-router-app/backend/package-lock.json
 .DS_Store
+mpa-with-router-app/frontend/package.json
