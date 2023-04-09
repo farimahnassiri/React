@@ -8,6 +8,8 @@ from "react-router-dom";
 import HomePage from './pages/Home';
 import EventsPage from './pages/EventPage';
 import EventDetailsPage from './pages/EventDetail';
+import NewEventsPage from './pages/NewEvents';
+import EditEventsPage from './pages/EditEvents';
 import RootLayout from './pages/Root';
 
 // Challenge / Exercise
@@ -42,6 +44,8 @@ const router = createBrowserRouter([
         { index: true, element: <HomePage/> },
         { path: 'events', element: <EventsPage/>},
         { path: 'events/:eventId', element: <EventDetailsPage/>},
+        { path: 'events/new', element: <NewEventsPage/>},
+        { path: 'events/:eventId/edit', element: < EditEventsPage/>},
     ]
 },
 ]);

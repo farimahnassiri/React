@@ -6,7 +6,8 @@ function EventDetailsPage(){
     return(
         <>
             <h1>Event Details!</h1>
-            <p>{params.productId}</p>
+            <h2>{params.eventId}</h2>
+            <p><Link to="edit" relative='path'>Edit</Link></p>
             <p><Link to=".." relative='path'>Back</Link></p>
         </>
     );
