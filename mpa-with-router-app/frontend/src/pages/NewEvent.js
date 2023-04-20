@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 
-function NewEventsPage(){
+function NewEventPage(){
     const params = useParams();
 
     return(
@@ -12,4 +12,4 @@ function NewEventsPage(){
     );
 }
 
-export default NewEventsPage;
+export default NewEventPage;
