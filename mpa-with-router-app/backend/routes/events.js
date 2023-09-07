@@ -13,10 +13,10 @@ router.get('/', async (req, res, next) => {
   try {
     const events = await getAll();
     //adding timeout to make sure data is loaded before user navigates to the page
-    setTimeout(() => {
-      res.json({ events: events });
-    }, 1500);
-    //res.json({ events: events });
+    // setTimeout(() => {
+    //   res.json({ events: events });
+    // }, 1500);
+    res.json({ events: events });
   } catch (error) {
     next(error);
   }
