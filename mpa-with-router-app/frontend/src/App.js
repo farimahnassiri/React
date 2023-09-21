@@ -9,7 +9,7 @@ import HomePage from './pages/Home';
 import ErrorPage from './pages/Error';
 import EventsPage, { loader as eventsLoader} from './pages/Events';
 import EventDetailsPage, { loader as eventDetailLoader} from './pages/EventDetail';
-import NewEventPage from './pages/NewEvent';
+import NewEventPage, { action as newEventAction } from './pages/NewEvent';
 import EditEventPage from './pages/EditEvent';
 import RootLayout from './pages/Root';
 import EventsRootLayout from './pages/EventsRoot';
@@ -69,7 +69,8 @@ const router = createBrowserRouter([
             },
             {
               path: 'new',
-              element: <NewEventPage/>
+              element: <NewEventPage/>,
+              action: newEventAction,
             },
           ]
        },

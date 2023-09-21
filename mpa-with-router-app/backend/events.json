@@ -1,11 +1,1 @@
-{
-  "events": [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ]
-}
+{"events":[{"title":"Tina at crew cade","image":"https://static.wixstatic.com/media/7e30d0_c9460c71e68f40279e3098f6ea350c56~mv2.jpg/v1/fill/w_600,h_399,al_c/7e30d0_c9460c71e68f40279e3098f6ea350c56~mv2.jpg","date":"2023-09-22","description":"Hello bitch!","id":"b8cd6b25-e2ad-4b54-a445-e9a532867997"},{"title":"Tina Khare","image":"https://c8.alamy.com/comp/WAJCCB/canada-quebec-montreal-royal-bank-lobby-the-new-crew-collective-and-cafe-WAJCCB.jpg","date":"2023-09-21","description":"Tina Khar ast","id":"138ba6eb-9c86-42ce-bb30-d238e5f90fb1"},{"id":"e1","title":"A dummy event","date":"2023-02-22","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","description":"Join this amazing event and connect with fellow developers."}]}
