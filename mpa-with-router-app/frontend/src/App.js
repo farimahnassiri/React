@@ -53,7 +53,7 @@ const router = createBrowserRouter([
             { 
               index: true,
               element: <EventsPage/>,
-              loader: eventsLoader,
+              loader: eventsLoader
             },
             { 
               path: ':eventId',
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
                 { 
                   index: true,
                   element: <EventDetailsPage/>,
-                  action: deleteEventAction,
+                  action: deleteEventAction
                 },
                 { 
                   path: 'edit',
@@ -74,7 +74,7 @@ const router = createBrowserRouter([
             {
               path: 'new',
               element: <NewEventPage/>,
-              action: newEventAction,
+              action: newEventAction
             },
           ]
        },
