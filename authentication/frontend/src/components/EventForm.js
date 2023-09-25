@@ -88,8 +88,6 @@ export async function action({ request, params }) {
   const method = request.method;
   const data = await request.formData();
 
-  const token = getAuthToken();
-
   const eventData = {
     title: data.get('title'),
     image: data.get('image'),
@@ -104,6 +102,7 @@ export async function action({ request, params }) {
     url = 'http://localhost:8080/events/' + eventId;
   }
 
+  const token = getAuthToken();
   const response = await fetch(url, {
     method: method,
     headers: {
