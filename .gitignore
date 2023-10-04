@@ -19,3 +19,4 @@ mpa-with-router-app/frontend/package.json
 authentication/backend/package-lock.json
 authentication/frontend/package-lock.json
 deploying-react-apps/package-lock.json
+react-query/package-lock.json
