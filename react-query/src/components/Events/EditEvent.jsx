@@ -1,45 +1,47 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useQuery, useMutation } from '@tanstack/react-query';
+import { Link, redirect, useNavigate, useParams, useSubmit, useNavigation } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
 import Modal from '../UI/Modal.jsx';
 import EventForm from './EventForm.jsx';
 import { fetchEvent, updateEvent, queryClient } from '../../util/http.js';
-import LoadingIndicator from '../UI/LoadingIndicator.jsx';
 import ErrorBlock from '../UI/ErrorBlock.jsx';
 
 export default function EditEvent() {
   const navigate = useNavigate();
+  const { state } = useNavigation();
+  const submit = useSubmit();
   const params = useParams();
 
-  const { data, isPending, isError, error } = useQuery({
+  const { data, isError, error } = useQuery({
     queryKey: ['events', params.id],
     queryFn: ({signal}) => fetchEvent({signal, id: params.id}),
+    staleTime: 10000
   });
 
-  const { mutate } = useMutation({
-    mutationFn: updateEvent,
-    onMutate: async (data) => {
-      const newEvent = data.event;
-      await queryClient.cancelQueries({queryKey: ['events', params.id]});
+  // const { mutate } = useMutation({
+  //   mutationFn: updateEvent,
+  //   onMutate: async (data) => {
+  //     const newEvent = data.event;
+  //     await queryClient.cancelQueries({queryKey: ['events', params.id]});
 
-      const previousEvent = queryClient.getQueryData(['events', params.id]);
+  //     const previousEvent = queryClient.getQueryData(['events', params.id]);
 
-      queryClient.setQueryData(['events', params.id], newEvent);
+  //     queryClient.setQueryData(['events', params.id], newEvent);
 
-      return { previousEvent }
-    },
-    onError: (error, data, context) => {
-      queryClient.setQueryData(['events', params.id], context.previousEvent)
-    },
-    //this is here to ensure the data from backend and front are in sync, force the data to be fetched again
-    onSettled: () => {
-      queryClient.invalidateQueries(['events', params.id]);
-    }
-  });
+  //     return { previousEvent }
+  //   },
+  //   onError: (error, data, context) => {
+  //     queryClient.setQueryData(['events', params.id], context.previousEvent)
+  //   },
+  //   //this is here to ensure the data from backend and front are in sync, force the data to be fetched again
+  //   onSettled: () => {
+  //     queryClient.invalidateQueries(['events', params.id]);
+  //   }
+  // });
 
   function handleSubmit(formData) {
-    mutate({ id: params.id, event: formData });
-    navigate('../');
+    //we are not sending an http request here
+    submit(formData, { method: 'PUT' });
   }
 
   function handleClose() {
@@ -48,12 +50,6 @@ export default function EditEvent() {
 
   let content;
 
-  if (isPending){
-    content =
-      <div className="center">
-        <LoadingIndicator />
-      </div>;
-  }
   if (isError){
     content = 
     <>
@@ -76,12 +72,18 @@ export default function EditEvent() {
   if (data){
     content = (
       <EventForm inputData={data} onSubmit={handleSubmit}>
-        <Link to="../" className="button-text">
-          Cancel
-        </Link>
-        <button type="submit" className="button">
-          Update
-        </button>
+        {state === 'submitting' ? (
+          <p>Sending data...</p>
+        ) : (
+          <>
+            <Link to="../" className="button-text">
+              Cancel
+            </Link>
+            <button type="submit" className="button">
+              Update
+            </button>
+          </>
+        )}
       </EventForm>
     );
   }
@@ -89,4 +91,20 @@ export default function EditEvent() {
   return (
     <Modal onClose={handleClose}>{content}</Modal>
   );
+}
+
+export function loader ({ params }){
+  // another way to fetch data, here with the help of react-router-dom
+  return queryClient.fetchQuery({
+    queryKey: ['events', params.id],
+    queryFn: ({signal}) => fetchEvent({signal, id: params.id}),
+  });
+}
+//we're not using the optimistic update anymore
+export async function action({ request, params }){
+  const formData = await request.formData();
+  const updatedEventData = Object.fromEntries(formData);
+  await updateEvent({ id: params.id, event: updatedEventData });
+  await queryClient.invalidateQueries(['events']);
+  return redirect('../');
 }
