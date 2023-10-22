@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useQuery,useMutation } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 
 import Header from '../Header.jsx';
 import ErrorBlock from '../UI/ErrorBlock.jsx';
