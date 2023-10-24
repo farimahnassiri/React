@@ -23,3 +23,14 @@ react-query/package-lock.json
 nextjs-meetup-app/package.json
 nextjs-meetup-app/package-lock.json
 nextjs-meetup-app/package.json
+*.json
+nextjs-meetup-app/.next/cache/webpack/client-development/0.pack.gz
+nextjs-meetup-app/.next/cache/webpack/client-development/index.pack.gz
+nextjs-meetup-app/.next/server/middleware-build-manifest.js
+nextjs-meetup-app/.next/server/middleware-react-loadable-manifest.js
+nextjs-meetup-app/.next/server/next-font-manifest.js
+nextjs-meetup-app/.next/static/chunks/polyfills.js
+nextjs-meetup-app/.next/static/development/_buildManifest.js
+nextjs-meetup-app/.next/static/development/_ssgManifest.js
+nextjs-meetup-app/.next/trace
+nextjs-meetup-app/package.json
