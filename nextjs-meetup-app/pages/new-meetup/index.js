@@ -4,7 +4,7 @@ function NewMeetupPage(){
   function addMeetupHandler(enteredMeetupData){
     console.log(enteredMeetupData);
   }
-  return <NewMeetupForm onAddMeetup={addMeetupHandler} />
+  return <NewMeetupForm onAddMeetup={addMeetupHandler} />;
 }
   
 export default NewMeetupPage;
