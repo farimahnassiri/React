@@ -34,3 +34,4 @@ nextjs-meetup-app/.next/static/development/_buildManifest.js
 nextjs-meetup-app/.next/static/development/_ssgManifest.js
 nextjs-meetup-app/.next/trace
 nextjs-meetup-app/package.json
+.DS_Store
