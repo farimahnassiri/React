@@ -7,13 +7,13 @@ async function handler (req, res){
 
         const client = await MongoClient.connect('mongodb+srv://farimahnassiri:BeMgCaSrBaRa@cluster0.xwlakya.mongodb.net/meetups?retryWrites=true&w=majority');
         const db = client.db();
-
         const meetupsCollection = db.collection('meetups');
+        
         const result = await meetupsCollection.insertOne(data);
 
         console.log(result);
         client.close();
-        
+
         res.status(201).json({ message: 'Meetup inserted!' });
     }
 }
