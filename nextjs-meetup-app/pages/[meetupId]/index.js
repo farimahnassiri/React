@@ -1,32 +1,35 @@
+import { MongoClient, ObjectId } from 'mongodb';
 import MeetupDetail from '../../components/meetups/MeetupDetail';
 
-function MeetupDetails(){
+function MeetupDetails(props){
     return (
         <MeetupDetail 
-            image ='https://www.contiki.com/media/vqlnvuon/oktoberfest-hotel-5-days-trip-14.jpeg?center=0.48756218905472637%2C0.5522388059701493&format=webp&mode=crop&width=2400&height=2400&quality=80'
-            title='A First Meetup'
-            address='Some address here!'
-            description='This is the first meetup!'
+            image = {props.meetupData.image}
+            title = {props.meetupData.title}
+            address = {props.meetupData.address}
+            description = {props.meetupData.description}
         />
     );
 }
 
 export async function getStaticPaths() {
-    // hard coded for now but later generated dynamically
+    // fetch data from an API
+    const client = await MongoClient.connect(
+        'mongodb+srv://farimahnassiri:BeMgCaSrBaRa@cluster0.xwlakya.mongodb.net/meetups?retryWrites=true&w=majority'
+    );
+    const db = client.db();
+    const meetupsCollection = db.collection('meetups');
+
+    const meetups = await meetupsCollection.find({},{ _id: 1 }).toArray();
+
+    client.close();
     return {
         fallback: false,
-        paths: [
-            {
-                params:{
-                    meetupId: 'm1',
-                },
-            },
-            {
-                params:{
-                    meetupId: 'm2',
-                },
-            },
-        ]
+        paths: meetups.map((meetup) => ({
+            params: {
+                meetupId: meetup._id.toString()
+            }
+        }))
     };
 }
 
@@ -36,15 +39,29 @@ export async function getStaticProps(context){
     const meetupId = context.params.meetupId;
     console.log(meetupId);
 
+    const client = await MongoClient.connect(
+        'mongodb+srv://farimahnassiri:BeMgCaSrBaRa@cluster0.xwlakya.mongodb.net/meetups?retryWrites=true&w=majority'
+    );
+    const db = client.db();
+    const meetupsCollection = db.collection('meetups');
+
+    const selectedMeetup = await meetupsCollection.findOne({
+        //the error says I need to add 'new'
+        _id: new ObjectId(meetupId),
+    });
+
+    console.log(selectedMeetup);
+
     return {
         props: {
-            image: 
-                'https://www.contiki.com/media/vqlnvuon/oktoberfest-hotel-5-days-trip-14.jpeg?center=0.48756218905472637%2C0.5522388059701493&format=webp&mode=crop&width=2400&height=2400&quality=80',
-            id: 'm1',
-            title: 'A First Meetup',
-            address:'Some address here!',
-            description:'This is the first meetup!'
-        }
+            meetupData: {
+                id: selectedMeetup._id.toString(),
+                title: selectedMeetup.title,
+                address: selectedMeetup.address,
+                image: selectedMeetup.image,
+                description: selectedMeetup.description,
+            }
+        },
     };
 
 }
